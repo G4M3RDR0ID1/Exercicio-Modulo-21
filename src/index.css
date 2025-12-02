@@ -1,0 +1,108 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilo global */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #4a90e2;
+}
+
+/* Formulário */
+.book-form {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.book-form input,
+.book-form select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.book-form button {
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.book-form button:hover {
+  background-color: #357ab8;
+}
+
+/* Lista de livros */
+.book-list {
+  list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Item de livro */
+.book-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.book-item .info {
+  flex: 1;
+}
+
+.book-item .actions {
+  display: flex;
+  align-items: center;
+}
+
+.book-item .status {
+  margin-right: 1rem;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Botões */
+.book-item .actions button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Botão remover */
+.book-item .actions .remove-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+/* Botão alternar status */
+.book-item .actions .toggle-btn {
+  background-color: #2ecc71;
+  color: white;
+}
+
+.book-item .actions button:hover {
+  opacity: 0.9;
+}

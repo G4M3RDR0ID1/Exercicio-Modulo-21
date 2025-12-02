@@ -9,7 +9,6 @@ const API_URL = "https://crudcrud.com/api/fbe11c23094e4cbdb00afb2e048f1a3e/livro
 const App: React.FC = () => {
   const [books, setBooks] = useState<Book[]>([]);
 
-  // GET
   const fetchBooks = async () => {
     try {
       const response = await axios.get<Book[]>(API_URL);
@@ -19,7 +18,6 @@ const App: React.FC = () => {
     }
   };
 
-  // POST
   const addBook = async (book: Book) => {
     try {
       const response = await axios.post<Book>(API_URL, book);
@@ -29,7 +27,6 @@ const App: React.FC = () => {
     }
   };
 
-  // DELETE
   const deleteBook = async (id: string) => {
     try {
       await axios.delete(`${API_URL}/${id}`);
@@ -39,18 +36,22 @@ const App: React.FC = () => {
     }
   };
 
-  // PUT (opcional)
   const toggleStatus = async (id: string, status: "Lido" | "Não lido") => {
-    try {
-      const book = books.find((b) => b._id === id);
-      if (!book) return;
-      const updatedBook = { ...book, status };
-      await axios.put(`${API_URL}/${id}`, updatedBook);
-      setBooks(books.map((b) => (b._id === id ? updatedBook : b)));
-    } catch (error) {
-      console.error("Erro ao atualizar status", error);
-    }
-  };
+  try {
+    const book = books.find((b) => b._id === id);
+    if (!book) return;
+
+    const { _id, ...bookWithoutId } = book;
+    const updatedBook = { ...bookWithoutId, status };
+
+    await axios.put(`${API_URL}/${id}`, updatedBook);
+
+    setBooks(books.map((b) => (b._id === id ? { ...b, status } : b)));
+  } catch (error) {
+    console.error("Erro ao atualizar status", error);
+  }
+};
+
 
   useEffect(() => {
     fetchBooks();
@@ -58,7 +59,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>📚 Catálogo de Livros</h1>
+      <h1>Catálogo de Livros</h1>
       <BookForm onAdd={addBook} />
       <BookList books={books} onDelete={deleteBook} onToggleStatus={toggleStatus} />
     </div>

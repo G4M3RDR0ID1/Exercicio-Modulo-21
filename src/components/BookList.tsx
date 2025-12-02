@@ -10,7 +10,7 @@ interface BookListProps {
 
 const BookList: React.FC<BookListProps> = ({ books, onDelete, onToggleStatus }) => {
   return (
-    <ul>
+    <ul className="book-list">
       {books.map((book) => (
         <BookItem
           key={book._id}

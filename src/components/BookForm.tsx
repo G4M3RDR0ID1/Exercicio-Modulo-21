@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Book } from "../types/Book";
+import type { Book } from "../types/Book";
 
 interface BookFormProps {
   onAdd: (book: Book) => void;
@@ -19,7 +19,7 @@ const BookForm: React.FC<BookFormProps> = ({ onAdd }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="book-form">
       <input
         type="text"
         placeholder="Título"
@@ -34,7 +34,10 @@ const BookForm: React.FC<BookFormProps> = ({ onAdd }) => {
         onChange={(e) => setAuthor(e.target.value)}
         required
       />
-      <select value={status} onChange={(e) => setStatus(e.target.value as "Lido" | "Não lido")}>
+      <select
+        value={status}
+        onChange={(e) => setStatus(e.target.value as "Lido" | "Não lido")}
+      >
         <option value="Não lido">Não lido</option>
         <option value="Lido">Lido</option>
       </select>
